@@ -1,0 +1,10 @@
+argparse
+omegaconf
+wandb
+numpy
+scipy
+tqdm
+torchrl
+tensordict
+torchgfn==1.1.1
+ml-collections==0.1.1
