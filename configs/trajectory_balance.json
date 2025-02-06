@@ -6,22 +6,26 @@
     "R2": 2.0,
     "seed": 3,
     "batch_size": 16,
+    "buffer_name": "",
     "replay_buffer_size": 0,
-    "loss": "TB",
-    "average_flow_loss": true,
+    "loss": "AvgTB",
     "tabular": false,
-    "uniform_pb": false,
+    "pb_uniform": false,
     "tied": true,
     "hidden_dim": 256,
     "n_hidden": 2,
     "lr": 1e-3,
-    "lrZ": 0.1,
+    "lr_Z": 0.1,
     "n_trajectories": 1000000,
     "validation_interval": 100,
     "validation_samples": 200000,
     "n_inf_validation": 1000,
     "n_val_samples": 1,
+    "checkpointer":
+    {
+        "checkpoint_dir": ""
+    },
     "wandb_project": "AverageFlows",
     "wandb_entity": "science_",
-    "wandb_run_name": "TB_my_avg_test_nt"
+    "wandb_run_name": ""
 }

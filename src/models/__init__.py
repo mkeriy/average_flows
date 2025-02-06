@@ -1,6 +1,6 @@
-from .trajectory_balance import TrajectoryBalance
+from .base import get_model
 
 
 __all__ = [
-    "TrajectoryBalance",
+    "get_model",
 ]
