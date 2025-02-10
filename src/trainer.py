@@ -133,7 +133,7 @@ class Trainer:
         trajectories = self.model.sample_trajectories(
             self.env,
             n_samples=self.batch_size,
-            # save_logprobs=self.buffer.capacity == 0,
+            save_logprobs=self.buffer.capacity == 0,
             save_estimator_outputs=False,
         )
         training_samples = self.model.to_training_samples(trajectories)

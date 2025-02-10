@@ -15,6 +15,7 @@ from gfn.gflownet import (
 )
 
 from .trajectory_balance import AvgTBGFlowNet
+from .flow_matching import AvgFMGFlowNet
 
 
 def create_estimators(
@@ -71,6 +72,8 @@ def get_model(env: Env, args: DictConfig) -> GFlowNet:
 
     if args.loss == "FM":
         return FMGFlowNet(pf_estimator)
+    elif args.loss == "AvgFM":
+        return AvgFMGFlowNet(pf_estimator)
     elif args.loss == "TB":
         return TBGFlowNet(pf_estimator, pb_estimator)
     elif args.loss == "AvgTB":
