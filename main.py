@@ -6,7 +6,7 @@ import torch
 from datetime import datetime
 
 
-from torchtune.training.metric_logging import WandBLogger
+from torchtune.training.metric_logging import WandBLogger, TensorBoardLogger
 from gfn.gym import HyperGrid
 from gfn.utils.common import set_seed
 
@@ -27,12 +27,13 @@ def main(args: DictConfig):  # noqa: C901
     exp = f"{args.wandb_run_name}_{datetime.now().strftime('%Y-%m-%d_%H:%M:%S')}"
     args.checkpointer.checkpoint_dir = f"./ckpts/{exp}"
     os.mkdir(args.checkpointer.checkpoint_dir)
-    logger = WandBLogger(
-        project=args.wandb_project,
-        entity=args.wandb_entity,
-        # group=...
-        name=exp,
-    )
+    logger = TensorBoardLogger(log_dir=f"./logs/{args.wandb_run_name}")
+    # logger = WandBLogger(
+    #     project=args.wandb_project,
+    #     entity=args.wandb_entity,
+    #     # group=...
+    #     name=exp,
+    # )
     logger.log_config(args)
 
     # 1. Create the environment
@@ -92,6 +93,8 @@ def main(args: DictConfig):  # noqa: C901
     )
 
     trainer.train()
+    
+    logger.close()
 
     return "--La Finale--"
 

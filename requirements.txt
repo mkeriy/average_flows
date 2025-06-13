@@ -7,6 +7,6 @@ tqdm
 torchrl
 torchtune
 tensordict
-torchgfn==1.1.1
+conda
 ml-collections==0.1.1
 torchao

@@ -177,3 +177,5 @@ cython_debug/
 
 wandb/
 /ckpts
+/logs
+/plotting_info

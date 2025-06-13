@@ -14,6 +14,7 @@ from gfn.gflownet import (
     TBGFlowNet,
 )
 
+from .detailed_balance import AvgDBGFlowNet
 from .trajectory_balance import AvgTBGFlowNet
 from .flow_matching import AvgFMGFlowNet
 
@@ -94,22 +95,29 @@ def get_model(env: Env, args: DictConfig) -> GFlowNet:
     # if args.tabular:
     #     module = Tabular(n_states=env.n_states, output_dim=1)
     # else:
-    #     module = NeuralNet(
-    #         input_dim=env.preprocessor.output_dim,
-    #         output_dim=1,
-    #         hidden_dim=args.hidden_dim,
-    #         n_hidden_layers=args.n_hidden,
-    #         torso=pf_torso if args.tied else None,
-    #     )
+    module = NeuralNet(
+            input_dim=env.preprocessor.output_dim,
+            output_dim=1,
+            hidden_dim=args.hidden_dim,
+            n_hidden_layers=args.n_hidden,
+            torso=pf_torso if args.tied else None,
+        )
 
-    # logF_estimator = ScalarEstimator(module=module, preprocessor=env.preprocessor)
+    logF_estimator = ScalarEstimator(module=module, preprocessor=env.preprocessor)
 
-    # if args.loss == "DB":
-    #     return DBGFlowNet(
-    #         pf=pf_estimator,
-    #         pb=pb_estimator,
-    #         logF=logF_estimator,
-    #     )
+    if args.loss == "DB":
+    
+        return DBGFlowNet(
+            pf=pf_estimator,
+            pb=pb_estimator,
+            logF=logF_estimator,
+        )
+    elif args.loss == "AvgDB":
+        return AvgDBGFlowNet(
+            pf=pf_estimator,
+            pb=pb_estimator,
+            logF=logF_estimator,
+        )
     # elif args.loss == "SubTB":
     #     return SubTBGFlowNet(
     #         pf=pf_estimator,

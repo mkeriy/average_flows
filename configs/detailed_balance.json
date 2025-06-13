@@ -8,7 +8,7 @@
     "batch_size": 16,
     "buffer_name": "base",
     "replay_buffer_size": 10000,
-    "loss": "AvgTB",
+    "loss": "AvgDB",
     "tabular": false,
     "pb_uniform": false,
     "tied": true,

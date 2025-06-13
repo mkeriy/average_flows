@@ -39,8 +39,7 @@ class AvgTBGFlowNet(TrajectoryBasedGFlowNet):
         loss = (scores + self.logZ).pow(2).mean()
         log_rewards = training_objects.log_rewards.clamp_min(self.log_reward_clip_min)
         addition = (log_rewards + total_log_pf_trajectories + self.logZ).mean()
-        
-        loss = loss + addition
+        loss = loss - addition
         
         if torch.isnan(loss):
             raise ValueError("loss is nan")

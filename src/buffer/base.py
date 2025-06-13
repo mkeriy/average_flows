@@ -7,9 +7,9 @@ def get_buffer(env: Env, loss: str, buffer_size: int = 0, buffer: str = ""):
 
     if loss in ("TB", "AvgTB", "SubTB", "ZVar"):
         objects_type = "trajectories"
-    elif loss in ("DB", "ModifiedDB"):
+    elif loss in ("DB", "ModifiedDB", "AvgDB"):
         objects_type = "transitions"
-    elif loss in ("FM", "Avg"):
+    elif loss in ("FM", "AvgFM"):
         objects_type = "states"
     else:
         raise NotImplementedError(f"Unknown loss: {loss}")
